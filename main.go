@@ -22,7 +22,10 @@ type Search struct {
 var latestSearch []Search
 
 func mainHandler(c echo.Context) error {
-	return c.String(200, "Images Microservice")
+	tmpl := `Images Microservice<br/>
+	<a href="/api/imagesearch/term">/api/imagesearch/:term</a><br/>
+	<a href="/api/latest/imagesearch">/api/latest/imagesearch</a>`
+	return c.HTML(200, tmpl)
 }
 func searchHandler(c echo.Context) error {
 	term := strings.Trim(c.Param("term"), " \r\t\n")
